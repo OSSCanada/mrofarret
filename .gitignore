@@ -4,3 +4,6 @@ node_modules
 aks.json
 test_output.json
 test.json
+
+terraform/
+output/
