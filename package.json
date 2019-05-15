@@ -1,0 +1,26 @@
+{
+  "name": "mr_ofarret",
+  "version": "1.0.0",
+  "description": "Reverse Terraform (Mr Ofarret)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OSSCanada/mr_ofarret.git"
+  },
+  "keywords": [
+    "Terraform",
+    "Azure"
+  ],
+  "author": "Ray Kao",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OSSCanada/mr_ofarret/issues"
+  },
+  "homepage": "https://github.com/OSSCanada/mr_ofarret#readme",
+  "dependencies": {
+    "@azure/ms-rest-js": "^1.8.6"
+  }
+}
