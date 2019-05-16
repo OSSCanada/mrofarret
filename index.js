@@ -27,19 +27,24 @@ function getCredentials() {
 
 getCredentials().then(credentials => {
   const client = new AzureResources.ResourceManagementClient(credentials, SubscriptionID);
-
+  
   client.resourceGroups.list()
-  .then((groups)=>{
-    groups.forEach(group => {
-      let thing = new TFAzureResource('azurerm_resource_group', group);
+  .then(async (groups)=>{
+    groups.forEach(async (group) => {
+      const resourceGroup = new TFAzureResource('azurerm_resource_group', group);
     
-      thing.saveToFile()
-        .then(obj => {console.log(obj)})
-        .catch()
+      const rg = await resourceGroup.saveToFile()
+
+      const resources = await client.resources.listByResourceGroup(group.name);
+
+      resources.forEach((resource) => {
+        resource.resource_group_name = "${" +  resourceGroup.terraformId + ".name}"
+        const resourceObject = new TFAzureResource('azurerm_resource', resource);
+
+        resourceObject.saveToFile()
+          .then(obj => console.log(obj))
+          .catch(err => console.log(err))
+      })
     })
-    // groups.forEach((group, index) => {
-    //   group.armResourceType = 'azurerm_resource_group';
-    //   toTfObject(group);
-    // })
   })
 })
