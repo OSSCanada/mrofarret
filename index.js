@@ -38,7 +38,6 @@ getCredentials().then(credentials => {
       const resources = await client.resources.listByResourceGroup(group.name);
 
       resources.forEach((resource) => {
-        console.log(resource.name.replace(/\//g, '-'));
         resource.resource_group_name = "${" +  resourceGroup.terraformId + ".name}"
 
         const resourceObject = new TFAzureResource('azurerm_resource', resource);
