@@ -6,7 +6,6 @@ const ClientSecret = process.env.ARM_CLIENT_SECRET;
 const SubscriptionID = process.env.ARM_SUBSCRIPTION_ID;
 const TenantID = process.env.ARM_TENANT_ID;
 
-
 const TFAzureResource = require('./lib/tfobj');
 
 function getCredentials() { 
