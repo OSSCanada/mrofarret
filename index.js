@@ -33,17 +33,19 @@ getCredentials().then(credentials => {
     groups.forEach(async (group) => {
       const resourceGroup = new TFAzureResource('azurerm_resource_group', group);
     
-      const rg = await resourceGroup.saveToFile()
+      resourceGroup.saveToFile()
 
       const resources = await client.resources.listByResourceGroup(group.name);
 
       resources.forEach((resource) => {
+        console.log(resource.name.replace(/\//g, '-'));
         resource.resource_group_name = "${" +  resourceGroup.terraformId + ".name}"
+
         const resourceObject = new TFAzureResource('azurerm_resource', resource);
 
         resourceObject.saveToFile()
-          .then(obj => console.log(obj))
-          .catch(err => console.log(err))
+          // .then(obj => console.log(obj))
+          // .catch(err => console.log(err))
       })
     })
   })
