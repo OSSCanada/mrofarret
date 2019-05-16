@@ -7,7 +7,7 @@ const SubscriptionID = process.env.ARM_SUBSCRIPTION_ID;
 const TenantID = process.env.ARM_TENANT_ID;
 
 
-const TFAzureResource = require('./lib/tfobj').default;
+const TFAzureResource = require('./lib/tfobj');
 
 function getCredentials() { 
   return new Promise((resolve, reject) => {
